@@ -12,7 +12,7 @@ const jwt = require("jsonwebtoken");
 var nodemailer = require("nodemailer");
 
 const JWT_SECRET =
-  "hvdvay6ert72839289()aiyg8t87qt72393293883uhefiuh78ttq3ifi78272jbkj?[]]pou89ywe";
+  "";
 
 const mongoUrl =
   "";
@@ -118,8 +118,8 @@ app.post("/forgot-password", async (req, res) => {
     var transporter = nodemailer.createTransport({
       service: "gmail",
       auth: {
-        user: "adarsh438tcsckandivali@gmail.com",
-        pass: "rmdklolcsmswvyfw",
+        user: "     @gmail.com",
+        pass: "",
       },
     });
 
@@ -187,3 +187,26 @@ app.post("/reset-password/:id/:token", async (req, res) => {
     res.json({ status: "Something Went Wrong" });
   }
 });
+const mongoose = require('mongoose');
+
+const customerSchema = new mongoose.Schema({
+  name: {
+    type: String,
+    required: true
+  },
+  email: {
+    type: String,
+    required: true,
+    unique: true
+  },
+  phone: {
+    type: String,
+    required: true
+  },
+  bookings: [{
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'Booking'
+  }]
+});
+
+module.exports = mongoose.model('Customer', customerSchema);
